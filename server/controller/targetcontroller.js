@@ -16,5 +16,6 @@ exports.createTargetController = async (req, res, err) => {
 }
 exports.getTargetController = async (req, res, err) => {
   const targetModal = await TARGET.getTarget();
+  
   return res.status(200).json(targetModal[0]);
 };

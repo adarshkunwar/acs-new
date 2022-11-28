@@ -1,4 +1,5 @@
 import './App.css';
+import Get from './Components/GETPOST/Get';
 import Complain from './Components/LoggedIn/Complain';
 // import LoggedIn from './Components/LoggedIn';
 // import Login from './Components/Login';
@@ -10,7 +11,9 @@ function App() {
         {/* <Landing/> */}
         {/* <Login/> */}
         {/* <LoggedIn/> */}
-        <Complain/>
+        {/* <Complain/>
+         */}
+        <Get />
       </div>
     );
 }
