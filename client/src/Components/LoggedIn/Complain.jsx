@@ -1,23 +1,50 @@
-import React from "react";
+import React, { useEffect , useState } from "react";
 import TextField from "@mui/material/TextField";
+import axios from "axios"
 import Button from "@mui/material/Button";
 
 const Complain = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    location: "",
+  });
+
+  const handleOnChange =(event) => {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value
+    }))
+  }
+
+  // ahiley last ma explain garxuh
+
+  const handleSubtmit = async (event) => {
+    event.preventDefault()
+    const { data } = await axios.post("http://localhost:8000/target/add", formData)
+    console.log(data,  "data")
+  } 
+
+  useEffect( () => {
+    console.log("formdaa", formData)
+  }, [formData])
   return (
     <div className="h-screen flex items-center justify-center">
       {/* form and image preview */}
       <div className="grid grid-cols-3 px-40 py-10">
         {/* form here */}
-        <form action="" className="col-span-2">
+        <form action="" className="col-span-2" onSubmit={handleSubtmit}>
           <div className="flex-col  space-y-3 locked-inner rounded-xl">
             {/* name */}
             <div>
               <TextField
+                value={formData.name}
+                name="name"
                 required
                 id="standard-required"
                 label="your Name"
                 className="w-96"
                 variant="standard"
+                onChange={handleOnChange}
               />
             </div>
             <div>
@@ -51,10 +78,13 @@ const Complain = () => {
             {/* location */}
             <div>
               <TextField
+                value={formData.location}
+                name="location"
                 required
                 id="standard-required"
                 label="location of the encounter"
                 variant="standard"
+                onChange={handleOnChange}
               />
             </div>
             <div>
