@@ -4,6 +4,7 @@ import LoggedIn from "./Components/LoggedIn";
 import Login from "./Components/Login";
 import Landing from "./Components/Landing";
 import Search from "./Components/LoggedIn/Search";
+import NavBar from "./Components/NavBar";
 function App() {
   const [activeStatus, setActiveStatus] = useState(false);
   let main;
@@ -16,6 +17,7 @@ function App() {
       {/* <Landing /> */}
       {/* <LoggedIn />
       {/*   <Search/> */}
+      <NavBar />
       {main}
     </div>
   );
