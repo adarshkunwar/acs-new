@@ -1,32 +1,64 @@
-import React, { useEffect , useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import axios from "axios"
-import Button from "@mui/material/Button";
 
-const Complain = () => {
+import axios from "axios";
+// import Button from "@mui/material/Button";
+import ImagePicker from "./Search/imagePicker";
+
+const Complain = props => {
+  const [imgUrl, setImgUrl] = useState("");
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
+    targetname: "",
+    position: "",
     location: "",
+    image: "",
+    description: "",
   });
 
-  const handleOnChange =(event) => {
-    setFormData((prev) => ({
+  useEffect(() => {
+    setFormData(prev => ({
       ...prev,
-      [event.target.name]: event.target.value
-    }))
-  }
+      image: imgUrl,
+    }));
+    console.log(imgUrl);
+  }, [imgUrl]);
+
+  const handleOnChange = event => {
+    setFormData(prev => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
 
   // ahiley last ma explain garxuh
 
-  const handleSubtmit = async (event) => {
-    event.preventDefault()
-    const { data } = await axios.post("http://localhost:8000/target/add", formData)
-    console.log(data,  "data")
-  } 
+  const handleSubtmit = async event => {
+    event.preventDefault();
+    const { data } = await axios.post(
+      "http://localhost:8000/target/add",
+      formData
+    );
+    // console.log("daraalfk", adarsh);
+    console.log(data, "data");
+    if (data) {
+      props.setActiveTab("search");
+    }
+  };
 
-  useEffect( () => {
-    console.log("formdaa", formData)
-  }, [formData])
+  // username: "",
+  // targetname: "",
+  // position: "",
+  // location: "",
+  // image: "",
+  // description: "",
+
+  useEffect(() => {
+    console.log("formdata", formData);
+  }, [formData]);
+
+  // create a preview as a side effect, whenever selected file is changed
+
   return (
     <div className="h-screen flex items-center justify-center">
       {/* form and image preview */}
@@ -37,8 +69,8 @@ const Complain = () => {
             {/* name */}
             <div>
               <TextField
-                value={formData.name}
-                name="name"
+                value={formData.username}
+                name="username"
                 required
                 id="standard-required"
                 label="your Name"
@@ -47,23 +79,16 @@ const Complain = () => {
                 onChange={handleOnChange}
               />
             </div>
-            <div>
-              {/* title */}
-              <TextField
-                required
-                id="standard-required"
-                label="title"
-                className="w-[30rem]"
-                variant="standard"
-              />
-            </div>
             {/* target */}
             <div>
               <TextField
                 required
                 id="standard-required"
                 label="Your target"
+                name="targetname"
                 variant="standard"
+                value={formData.targetname}
+                onChange={handleOnChange}
               />
             </div>
             {/* position */}
@@ -73,6 +98,9 @@ const Complain = () => {
                 id="standard-required"
                 label="position of the target"
                 variant="standard"
+                name="position"
+                value={formData.position}
+                onChange={handleOnChange}
               />
             </div>
             {/* location */}
@@ -95,14 +123,23 @@ const Complain = () => {
                 // rows={4}
                 className="w-96"
                 variant="standard"
+                name="description"
+                value={formData.description}
+                onChange={handleOnChange}
               />
             </div>
             {/* image upload */}
-            <div>
-              <Button variant="contained" component="label">
-                Upload the image
-                <input hidden accept="image/*" multiple type="file" />
-              </Button>
+            <div className="flex items-center">
+              <ImagePicker
+                setImgUrl={setImgUrl}
+                name="image"
+                value={formData.image}
+                onChange={handleOnChange}
+                // setSelectedFile={setSelectedFile}
+              />
+              <div className="text-red-400 text-md px-2">
+                * image size should be lower 100kb
+              </div>
             </div>
             <div className="flex justify-end">
               <button type="submit" className="bigbtn bg-yellow-300">
@@ -111,9 +148,12 @@ const Complain = () => {
             </div>
           </div>
         </form>
-        <div className="h-96 border-2 flex locked-inner rounded-3xl jusify-center items-center text-2xl">
-          <div>Image is previewed here</div>
-          <img src="" alt="" />
+        <div className="w-80 h-80 border-2 flex locked-inner rounded-3xl jusify-center items-center text-2xl">
+          {!imgUrl ? (
+            <div>Image is previewed here</div>
+          ) : (
+            <img src={imgUrl} alt="" className="w-80 h-80 object-cover " />
+          )}
         </div>
       </div>
     </div>

@@ -1,9 +1,12 @@
 const TARGET = require("../module/target");
+const formidable = require("formidable");
+const fs = require("fs");
+
 exports.createTargetController = async (req, res, err) => {
   try {
     const { username, targetname, position, location, image, description } =
       req.body;
-
+    const buffer = Buffer.from(image, "base64");
     const targetModal = new TARGET(
       username,
       targetname,

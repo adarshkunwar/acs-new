@@ -1,21 +1,56 @@
 import React from "react";
+import homeImg from "../img/1.jpg";
 
-const Landing = () => {
+const Landing = props => {
   return (
-    <div className="w-screen h-screen flex justify-center items-center relative">
-      {/* logo */}
-      <div className="absolute top-0 left-0 ml-5 mt-3 text-2xl">logo here</div>
-      <div className="grid grid-cols-3 gap-10 justify-evenly items-center">
-        <div className="col-span-2 text-4xl">
-          {/* array of text to circle too */}
-          {/* tag line */}
-          <div className="3xl">Let's fight corruption</div>
-          {/* click here button */}
-          <button className="bg-yellow-400 px-5 py-2 rounded-full text-xl">
-            Gets fight!!
-          </button>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content w-full flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold">LETS FIGHT CORRUPTION</h1>
+          <p className="py-6">
+            For a good place to survive, say ‘No’ to bribe.
+          </p>
         </div>
-        <div className="w-96 h-96 bg-blue-300">Random image array</div>
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="text"
+                placeholder="email"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="password"
+                className="input input-bordered"
+              />
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              <button
+                className="btn btn-primary"
+                onClick={e => {
+                  e.preventDefault();
+                  props.setActiveStatus(true);
+                }}
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
