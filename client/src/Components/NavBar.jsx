@@ -72,6 +72,15 @@ const NavBar = props => {
               </li>
             </ul>
           </div>
+          <div>
+            <img
+              src={
+                "https://2.bp.blogspot.com/-_yR2ww54dO8/Xtu-pVi2mYI/AAAAAAAA2DY/CNJen388JGIbwmxbf5r_V2xhDmQ5WAJRQCLcBGAsYHQ/s1600/Flag_of_Nepal.gif"
+              }
+              alt=""
+              className="w-10 "
+            />
+          </div>
         </div>
       </div>
     </div>

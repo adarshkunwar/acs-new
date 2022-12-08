@@ -7,9 +7,9 @@ const Landing = props => {
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="">
-        {/*<video autoplay="true" loop muted className="opacity-70">
+        {/* <video autoPlay loop muted className="opacity-70">
           <source src={video} type="video/mp4" />
-        </video> /*}
+        </video> */}
         {/* <div className="w-screen h-screen glass absolute"></div> */}
         <img
           src={
@@ -64,7 +64,7 @@ const Landing = props => {
           <h1 className="text-4xl text-center font-bold block md:hidden">
             Lets fight Corruption
           </h1>
-          <h1 className="text-5xl font-bold hidden md:block text-white">
+          <h1 className="text-5xl font-bold hidden md:block">
             <Typewriter
               options={{
                 strings: [
