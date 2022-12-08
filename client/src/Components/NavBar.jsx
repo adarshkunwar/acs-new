@@ -1,18 +1,24 @@
 import React from "react";
 
-const NavBar = (props) => {
+const NavBar = props => {
   return (
     <div className="absolute w-screen z-50">
-      <div className="navbar bg-base-100 px-10">
+      <div className="navbar bg-transparent px-10">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">ACS</a>
+          <a
+            className={`btn btn-ghost normal-case  ${
+              props.activeStatus ? "text-xl" : "text-4xl text-white"
+            }`}
+          >
+            ACS
+          </a>
         </div>
         <div className="flex gap-8">
           <div
             className={`flex gap-3 ${props.activeStatus ? "block" : "hidden"}`}
           >
             <div
-              onClick={(e) => {
+              onClick={e => {
                 e.preventDefault();
                 props.setActiveTab("complain");
               }}
@@ -23,7 +29,7 @@ const NavBar = (props) => {
               Complain
             </div>
             <div
-              onClick={(e) => {
+              onClick={e => {
                 e.preventDefault();
                 props.setActiveTab("search");
               }}
@@ -37,7 +43,7 @@ const NavBar = (props) => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="avatar">
-                <div className="w-8 rounded-full">
+                <div className="w-10 rounded-full">
                   <img src="https://placeimg.com/192/192/people" />
                 </div>
               </div>
@@ -49,17 +55,14 @@ const NavBar = (props) => {
               }`}
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <a className="justify-between">Profile</a>
               </li>
               <li>
                 <a>Settings</a>
               </li>
               <li>
                 <a
-                  onClick={(e) => {
+                  onClick={e => {
                     e.preventDefault();
                     props.setActiveStatus(false);
                   }}

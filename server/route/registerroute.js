@@ -12,5 +12,4 @@ const {
 router.post("/register", loginValidations, validate, createLogincontroller);
 router.post("/login", userLogin);
 router.get("/", getLoginController);
-
 module.exports = router;
