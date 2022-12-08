@@ -5,9 +5,10 @@ import SearchList from "./Search/SearchList";
 
 const Search = () => {
   const [searchActive, setSearchActive] = useState(false);
-  const [dataPresent, setDataPresent] = useState(true);
+  const [dataPresent, setDataPresent] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
+  const [searchKeyWord, setSearchKeyWord] = useState("");
   {
     /* 
   const [search, setSearch] = useState(false);
@@ -29,18 +30,29 @@ const Search = () => {
     }
   };
 
-  const handleSearch = event => {
-    const searchWord = event.target.value;
+  const clearData = (event) => {
+    event.preventDefault();
 
-    const newFilter = data.filter(value => {
+    setSearchActive(false);
+    setDataPresent(false);
+    setFilteredData(null);
+    setSearchKeyWord("");
+  };
+
+  const handleSearch = (event) => {
+    const searchWord = event.target.value;
+    setSearchKeyWord(event.target.value);
+    const newFilter = data.filter((value) => {
       return value.targetname.includes(searchWord);
     });
 
     if (!searchWord) {
       setSearchActive(false);
+      setDataPresent(false);
       setFilteredData(null);
     } else {
       setSearchActive(true);
+      setDataPresent(true);
       setFilteredData(newFilter);
     }
   };
@@ -55,28 +67,47 @@ const Search = () => {
 
   return (
     <div className="w-screen h-screen relative">
+      <div className="absolute">
+        <img
+          src={
+            "https://th.bing.com/th/id/OIP.kgi4rhahhnu9ykQgngQwwgHaGQ?pid=ImgDet&rs=1"
+          }
+          alt=""
+          className="w-screen h-screen object-contain mt-10 opacity-10"
+        />
+      </div>
       <div
         className={`flex absolute transition-all duration-300 left-1/2 -translate-x-1/2 ${
-          searchActive ? "top-2" : "top-1/2 -translate-x-1/2"
+          searchActive ? "top-16" : "top-1/2 -translate-x-1/2"
         } `}
       >
         <div className="">
           <div>
-            <div className={`flex`}>
+            <div
+              className={`flex items-center border-2 border-gray-500 rounded-full`}
+            >
               <input
                 type="text"
                 name=""
                 id=""
-                className="w-96 border-2 px-5 py-2 rounded-l-full border-gray-500 focus:outline-none"
+                value={searchKeyWord}
+                className="w-96 border-none px-5 py-2 rounded-l-full border-gray-500 focus:outline-none"
                 onChange={handleSearch}
               />
-              <button
+              {dataPresent ? (
+                <div className="px-5 cursor-pointer" onClick={clearData}>
+                  X
+                </div>
+              ) : (
+                <div className="px-5 cursor-pointer">Search</div>
+              )}
+              {/* <button
                 value="Search"
                 className="bg-yellow-500 rounded-r-full px-4 py-2"
                 onClick={() => setDataPresent(!dataPresent)}
               >
                 search
-              </button>
+              </button> */}
             </div>
           </div>
           <div
@@ -85,7 +116,7 @@ const Search = () => {
             }`}
           >
             <div className="flex-col space-y-3">
-              {filteredData?.map(item => (
+              {filteredData?.map((item) => (
                 <SearchList
                   key={item.id}
                   username={item.username}

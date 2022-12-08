@@ -3,7 +3,7 @@ import React from "react";
 const NavBar = (props) => {
   return (
     <div className="absolute w-screen z-50">
-      <div className="navbar bg-base-100 px-10">
+      <div className="navbar bg-transparent px-10">
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">ACS</a>
         </div>
@@ -51,7 +51,7 @@ const NavBar = (props) => {
               <li>
                 <a className="justify-between">
                   Profile
-                  <span className="badge">New</span>
+                  {/* <span className="badge">New</span> */}
                 </a>
               </li>
               <li>
@@ -68,6 +68,15 @@ const NavBar = (props) => {
                 </a>
               </li>
             </ul>
+          </div>
+          <div>
+            <img
+              src={
+                "https://2.bp.blogspot.com/-_yR2ww54dO8/Xtu-pVi2mYI/AAAAAAAA2DY/CNJen388JGIbwmxbf5r_V2xhDmQ5WAJRQCLcBGAsYHQ/s1600/Flag_of_Nepal.gif"
+              }
+              alt=""
+              className="w-10 "
+            />
           </div>
         </div>
       </div>

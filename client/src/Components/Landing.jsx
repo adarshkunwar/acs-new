@@ -7,11 +7,11 @@ const Landing = (props) => {
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="">
-        <video autoplay="true" loop muted className="opacity-70">
+        {/* <video autoPlay loop muted className="opacity-70">
           <source src={video} type="video/mp4" />
-        </video>
+        </video> */}
         {/* <div className="w-screen h-screen glass absolute"></div> */}
-        {/* <img src={homeImg} alt="" className="w-screen h-screen" /> */}
+        <img src={homeImg} alt="" className="w-screen h-screen" />
       </div>
       <div className="hero-content w-full flex-col-reverse lg:grid lg:grid-cols-6">
         <div className="card col-span-2 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 glassMorph">
@@ -58,7 +58,7 @@ const Landing = (props) => {
           <h1 className="text-4xl text-center font-bold block md:hidden">
             Lets fight Corruption
           </h1>
-          <h1 className="text-5xl font-bold hidden md:block">
+          <h1 className="text-5xl font-bold hidden md:block select-none">
             <Typewriter
               options={{
                 strings: [

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-
+import image from "../../img/nepal.png";
 import axios from "axios";
 // import Button from "@mui/material/Button";
 import ImagePicker from "./Search/imagePicker";
 
-const Complain = props => {
+const Complain = (props) => {
   const [imgUrl, setImgUrl] = useState("");
   const [formData, setFormData] = useState({
     username: "",
@@ -17,15 +17,15 @@ const Complain = props => {
   });
 
   useEffect(() => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       image: imgUrl,
     }));
     console.log(imgUrl);
   }, [imgUrl]);
 
-  const handleOnChange = event => {
-    setFormData(prev => ({
+  const handleOnChange = (event) => {
+    setFormData((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
@@ -33,7 +33,7 @@ const Complain = props => {
 
   // ahiley last ma explain garxuh
 
-  const handleSubtmit = async event => {
+  const handleSubtmit = async (event) => {
     event.preventDefault();
     const { data } = await axios.post(
       "http://localhost:8000/target/add",
@@ -62,10 +62,17 @@ const Complain = props => {
   return (
     <div className="h-screen flex items-center justify-center">
       {/* form and image preview */}
+      <div className="absolute w-screen h-screen object-contain">
+        <img
+          src={image}
+          alt=""
+          className="absolute w-screen h-screen object-contain -z-50"
+        />
+      </div>
       <div className="grid grid-cols-3 px-40 py-10">
         {/* form here */}
         <form action="" className="col-span-2" onSubmit={handleSubtmit}>
-          <div className="flex-col  space-y-3 locked-inner rounded-xl">
+          <div className="flex-col glass px-5 py-5 space-y-3  rounded-xl">
             {/* name */}
             <div>
               <TextField
@@ -148,7 +155,7 @@ const Complain = props => {
             </div>
           </div>
         </form>
-        <div className="w-80 h-80 border-2 flex locked-inner rounded-3xl jusify-center items-center text-2xl">
+        <div className="w-80 h-80 border-2 flex  rounded-3xl jusify-center items-center text-2xl">
           {!imgUrl ? (
             <div>Image is previewed here</div>
           ) : (
