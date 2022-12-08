@@ -1,32 +1,36 @@
 import React, { useState } from "react";
-import SignIn from "./Login/SignIn";
-import SignUp from "./Login/SignUp";
+import Button from "@mui/material/Button";
+import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignIn/SignUp";
 
 const Login = () => {
-  const [activeTab, setActiveTab] = useState("signIn");
+  const [sign, setSign] = useState("signUp");
   let tab;
-  if (activeTab === "signIn") tab = <SignIn />;
-  if (activeTab === "signUp") tab = <SignUp />;
+  if (sign === "signUp") tab = <SignUp />;
+  if (sign === "signIn") tab = <SignIn />;
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <div className="w-[25rem] bg-blue-400">
-        {/* buttons here */}
-        <div className="button flex justify-around mt-5">
-          <button
-            onClick={() => setActiveTab("signIn")}
-            className="bg-yellow-400 w-[10rem] px-5 py-2 rounded-full"
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div>
+        <div className="flex w-full">
+          <div
+            onClick={() => setSign("signUp")}
+            className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
           >
-            Login
-          </button>
-          <button
-            onClick={() => setActiveTab("signUp")}
-            className="bg-yellow-400 w-[10rem] px-5 py-2 rounded-full"
+            <Button variant="contained" color="success">
+              SignUp
+            </Button>
+          </div>
+          <div className="divider divider-horizontal">|</div>
+          <div
+            onClick={() => setSign("signIn")}
+            className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
           >
-            Sign-up
-          </button>
+            <Button variant="contained" color="success">
+              SignIn
+            </Button>
+          </div>
         </div>
-        {/* login  page */}
-        <div className="mt-10">{tab}</div>
+        <div>{tab}</div>
       </div>
     </div>
   );

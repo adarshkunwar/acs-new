@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Complain from "./LoggedIn/Complain";
 import Search from "./LoggedIn/Search.jsx";
-const LoggedIn = (props) => {
+const LoggedIn = props => {
   let tab;
-  if (props.activeTab === "complain") tab = <Complain />;
+  if (props.activeTab === "complain")
+    tab = <Complain setActiveTab={props.setActiveTab} />;
   if (props.activeTab === "search") tab = <Search />;
 
   return (

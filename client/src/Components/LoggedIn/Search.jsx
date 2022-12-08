@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchResult from "./Search/SearchResult";
 import SearchList from "./Search/SearchList";
-
+import back from "../../img/coa.jpg";
 const Search = () => {
   const [searchKeyWord, setSearchKeyWord] = useState("");
   const [searchActive, setSearchActive] = useState(false);
   const [dataPresent, setDataPresent] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [data, setData] = useState([]);
-  const [searchKeyWord, setSearchKeyWord] = useState("");
   {
     /* 
   const [search, setSearch] = useState(false);
@@ -29,12 +28,6 @@ const Search = () => {
     setUsers(users); 
     */
     }
-  };
-
-  const clearData = () => {
-    setSearchKeyWord("");
-    setSearchActive(false);
-    setFilteredData(null);
   };
 
   const clearData = event => {
@@ -70,13 +63,11 @@ const Search = () => {
 
   return (
     <div className="w-screen h-screen relative">
-      <div className="absolute">
+      <div className="absolute select-none">
         <img
-          src={
-            "https://th.bing.com/th/id/OIP.kgi4rhahhnu9ykQgngQwwgHaGQ?pid=ImgDet&rs=1"
-          }
+          src={back}
           alt=""
-          className="w-screen h-screen object-contain mt-10 opacity-10"
+          className="w-screen select-none h-screen object-contain mt-10 opacity-10"
         />
       </div>
       <div
